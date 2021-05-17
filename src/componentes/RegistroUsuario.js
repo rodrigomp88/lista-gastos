@@ -7,7 +7,7 @@ import {
   Input,
   ContenedorBoton,
 } from "./../elementos/ElementosDeFormulario";
-import { ReactComponent as SvgLogin } from "./../imagenes/login.svg";
+import { ReactComponent as SvgLogin } from "./../imagenes/registro.svg";
 import styled from "styled-components";
 import { auth } from "../firebase/firebaseConfig";
 import { Link, useHistory } from "react-router-dom";
@@ -17,21 +17,34 @@ import { ContenedorInicio } from "../elementos/Contenedor";
 const Svg = styled(SvgLogin)`
   width: 100%;
   max-height: 5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 `;
 
-export const InicioSesion = () => {
+export const RegistroUsuario = () => {
   const history = useHistory();
   const [correo, establecerCorreo] = useState("");
+  const [nombre, establecerNombre] = useState("");
   const [password, establecerPassword] = useState("");
+  const [password2, establecerPassword2] = useState("");
   const [estadoAlerta, cambiarEstadoAlerta] = useState(false);
   const [alerta, cambiarAlerta] = useState({});
 
   const handleChange = (e) => {
-    if (e.target.name === "email") {
-      establecerCorreo(e.target.value);
-    } else if (e.target.name === "password") {
-      establecerPassword(e.target.value);
+    switch (e.target.name) {
+      case "email":
+        establecerCorreo(e.target.value);
+        break;
+      case "nombre":
+        establecerNombre(e.target.value);
+        break;
+      case "password":
+        establecerPassword(e.target.value);
+        break;
+      case "password2":
+        establecerPassword2(e.target.value);
+        break;
+      default:
+        break;
     }
   };
 
@@ -51,29 +64,42 @@ export const InicioSesion = () => {
 
       return;
     }
-    if (correo === "" || password === "") {
+    if (nombre === "" || correo === "" || password === "" || password2 === "") {
       cambiarEstadoAlerta(true);
       cambiarAlerta({
         tipo: "error",
-        mensaje: "Por favor rellene todos los campos",
+        mensaje: "Por favor rellena todos los datos",
+      });
+
+      return;
+    }
+    if (password !== password2) {
+      cambiarEstadoAlerta(true);
+      cambiarAlerta({
+        tipo: "error",
+        mensaje: "Contraseñas diferentes",
       });
 
       return;
     }
 
     try {
-      await auth.signInWithEmailAndPassword(correo, password);
+      await auth.createUserWithEmailAndPassword(correo, password);
       history.push("/");
     } catch (error) {
       cambiarEstadoAlerta(true);
       let mensaje;
+      console.log(error);
       switch (error.code) {
-        case "auth/wrong-password":
-          mensaje = "La contraseña no es correcta";
+        case "auth/invalid-password":
+          mensaje = "La contraseña tiene que ser de al menos 6 caracteres.";
           break;
-        case "auth/user-not-found":
+        case "auth/email-already-in-use":
           mensaje =
-            "No se encontro ninguna cuenta con el correo electrónico proporcionado.";
+            "Ya existe una cuenta con el correo electrónico proporcionado.";
+          break;
+        case "auth/invalid-email":
+          mensaje = "El correo electrónico no es válido.";
           break;
         default:
           mensaje = "Hubo un error al intentar crear la cuenta.";
@@ -82,22 +108,29 @@ export const InicioSesion = () => {
       cambiarAlerta({ tipo: "error", mensaje: mensaje });
     }
   };
+
   return (
     <>
       <Helmet>
-        <title>Ingresar</title>
+        <title>Crear Cuenta</title>
       </Helmet>
 
       <ContenedorInicio>
         <Header>
           <ContenedorHeader>
-            <Titulo>Ingresar</Titulo>
+            <Titulo>Registrarse</Titulo>
           </ContenedorHeader>
         </Header>
 
         <Formulario onSubmit={handleSubmit}>
           <Svg />
-
+          <Input
+            type="text"
+            name="nombre"
+            placeholder="Nombre"
+            value={nombre}
+            onChange={handleChange}
+          />
           <Input
             type="email"
             name="email"
@@ -105,7 +138,6 @@ export const InicioSesion = () => {
             value={correo}
             onChange={handleChange}
           />
-
           <Input
             type="password"
             name="password"
@@ -113,14 +145,19 @@ export const InicioSesion = () => {
             value={password}
             onChange={handleChange}
           />
-
-          <div className="text-center mt-3">
-            No tenes cuenta? <Link to="/registrar" className="text-success">registrate</Link>
+          <Input
+            type="password"
+            name="password2"
+            placeholder="Repetir la contraseña"
+            value={password2}
+            onChange={handleChange}
+          />
+          <div className="container text-center mt-3">
+            Ya tenes cuenta? <Link to="/ingresar" className="text-success">Inicia sesión</Link>
           </div>
-
           <ContenedorBoton>
             <Boton as="button" type="submit" className="btn btn-success">
-              Iniciar Sesion
+              Crear Cuenta
             </Boton>
           </ContenedorBoton>
         </Formulario>

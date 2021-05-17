@@ -1,8 +1,7 @@
 import React from "react";
-import { Boton } from "./Boton";
-import Cerrar from "../imagenes/cerrar-sesion.png";
-import { auth } from "../firebase/firebase-config";
-import { useHistory } from "react-router";
+import { Boton } from "./Botton";
+import { auth } from "./../firebase/firebaseConfig";
+import { useHistory } from "react-router-dom";
 
 export const BotonCerrarSesion = () => {
   const history = useHistory();
@@ -10,17 +9,20 @@ export const BotonCerrarSesion = () => {
   const cerrarSesion = async () => {
     try {
       await auth.signOut();
-      history.push("/iniciar-sesion");
+      history.push("/ingresar");
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <>
-      <Boton as="button" onClick={cerrarSesion}>
-        <img src={Cerrar} alt="" style={{ width: "20px" }} />
-      </Boton>
-    </>
+    <Boton
+      iconoGrande
+      as="button"
+      className="btn btn-danger"
+      onClick={cerrarSesion}
+    >
+      <i className="fi-rr-sign-out"></i>
+    </Boton>
   );
 };

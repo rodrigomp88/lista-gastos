@@ -1,58 +1,58 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
-import { BrowserRouter, Switch } from "react-router-dom";
-import { Helmet } from "react-helmet";
-
-import favicon from "./imagenes/logo.png";
-
+import "./index.css";
 import { App } from "./App";
-import { Contenedor } from "./elementos/Contenedor";
+import WebFont from "webfontloader";
+import { BrowserRouter, Switch } from "react-router-dom";
 import { EditarGasto } from "./componentes/EditarGasto";
 import { GastosPorCategoria } from "./componentes/GastosPorCategoria";
 import { InicioSesion } from "./componentes/InicioSesion";
-import { RegistroUsuarios } from "./componentes/RegistroUsuarios";
 import { ListaDeGastos } from "./componentes/ListaDeGastos";
+import { RegistroUsuario } from "./componentes/RegistroUsuario";
+import { Helmet } from "react-helmet";
+import favicon from "./imagenes/logo.png";
 import { Fondo } from "./elementos/Fondo";
-
-import "./index.css";
-import { AuthProvider } from "./contextos/AuthContext";
+import { AuthProvider } from "./context/AuthConext";
 import { RutaPrivada } from "./componentes/RutaPrivada";
+import { TotalGastadoProvider } from "./context/TotalGastoEnElMesContext";
 import { RutaPublica } from "./componentes/RutaPublica";
+
+WebFont.load({
+  google: {
+    families: ["Work Sans:400,500,700", "sans-serif"],
+  },
+});
 
 const Index = () => {
   return (
     <>
       <Helmet>
-        <link rel="icon" href={favicon} type="image/x-icon" />
+        <link rel="shortcut icon" href={favicon} type="image/x-icon" />
       </Helmet>
 
       <AuthProvider>
-        <BrowserRouter>
-          <Contenedor>
-            <Switch>
-              <RutaPublica path="/iniciar-sesion">
-                <InicioSesion />
-              </RutaPublica>
-              <RutaPublica path="/crear-cuenta">
-                <RegistroUsuarios />
-              </RutaPublica>
-
-              <RutaPrivada path="/categorias">
-                <GastosPorCategoria />
-              </RutaPrivada>
-              <RutaPrivada path="/lista">
-                <ListaDeGastos />
-              </RutaPrivada>
-              <RutaPrivada path="/editar">
-                <EditarGasto />
-              </RutaPrivada>
-              <RutaPrivada path="/">
-                <App />
-              </RutaPrivada>
-            </Switch>
-          </Contenedor>
-        </BrowserRouter>
+        <TotalGastadoProvider>
+          <BrowserRouter>
+              <Switch>
+                {/* Rutas publicas */}
+                <RutaPublica path="/ingresar" component={InicioSesion} />
+                <RutaPublica path="/registrar" component={RegistroUsuario} />
+                {/* Rutas privadas*/}
+                <RutaPrivada path="/categorias">
+                  <GastosPorCategoria />
+                </RutaPrivada>
+                <RutaPrivada path="/lista">
+                  <ListaDeGastos />
+                </RutaPrivada>
+                <RutaPrivada path="/editar/:id">
+                  <EditarGasto />
+                </RutaPrivada>
+                <RutaPrivada path="/">
+                  <App />
+                </RutaPrivada>
+              </Switch>
+          </BrowserRouter>
+        </TotalGastadoProvider>
       </AuthProvider>
       <Fondo />
     </>

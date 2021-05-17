@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import theme from "../theme";
+import { theme } from "./../theme";
 
 const slideDown = keyframes`
     0% {
@@ -53,23 +53,23 @@ const ContenedorAlerta = styled.div`
   }
 `;
 
-export const Alerta = ({ tipo, mensaje, estadoAlerta, setEstadoAlerta }) => {
+export const Alerta = ({
+  tipo,
+  mensaje,
+  estadoAlerta,
+  cambiarEstadoAlerta,
+}) => {
   useEffect(() => {
     let tiempo;
-
     if (estadoAlerta === true) {
       tiempo = setTimeout(() => {
-        setEstadoAlerta(false);
+        cambiarEstadoAlerta(false);
       }, 4000);
     }
 
-    return () => {
-      clearTimeout(tiempo);
-    };
-    /*
-    Pasamos una ficnion de limpieza
-    */
-  }, [estadoAlerta, setEstadoAlerta]);
+    return () => clearTimeout(tiempo);
+  }, [estadoAlerta, cambiarEstadoAlerta]);
+
   return (
     <>
       {estadoAlerta && (

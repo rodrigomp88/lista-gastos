@@ -1,32 +1,32 @@
 import React from "react";
 
-import Comida from "../imagenes/comida.png";
-import Compra from "../imagenes/compra.png";
-import CuentasYPagos from "../imagenes/cuentas-y-pagos.png";
-import Diversion from "../imagenes/diversion.png";
-import Hogar from "../imagenes/hogar.png";
-import Ropa from "../imagenes/ropa.png";
-import SaludEHigiene from "../imagenes/salud-e-higiene.png";
-import Combustible from "../imagenes/combustible.png";
+import { ReactComponent as IconoComida } from "./../imagenes/cat_comida.svg";
+import { ReactComponent as IconoCompras } from "./../imagenes/cat_compras.svg";
+import { ReactComponent as IconoCuentasYPagos } from "./../imagenes/cat_cuentas-y-pagos.svg";
+import { ReactComponent as IconoDiversion } from "./../imagenes/cat_diversion.svg";
+import { ReactComponent as IconoHogar } from "./../imagenes/cat_hogar.svg";
+import { ReactComponent as IconoRopa } from "./../imagenes/cat_ropa.svg";
+import { ReactComponent as IconoSaludEHigiene } from "./../imagenes/cat_salud-e-higiene.svg";
+import { ReactComponent as IconoTransporte } from "./../imagenes/cat_transporte.svg";
 
 export const IconoCategoria = ({ id }) => {
   switch (id) {
     case "comida":
-      return <img src={Comida} alt="" style={{width: "35px"}} />;
+      return <IconoComida />;
     case "compras":
-      return <img src={Compra} alt="" style={{width: "35px"}} />;
+      return <IconoCompras />;
     case "cuentas y pagos":
-      return <img src={CuentasYPagos} alt="" style={{width: "35px"}} />;
+      return <IconoCuentasYPagos />;
     case "diversion":
-      return <img src={Diversion} alt="" style={{width: "35px"}} />;
+      return <IconoDiversion />;
     case "hogar":
-      return <img src={Hogar} alt="" style={{width: "35px"}} />;
+      return <IconoHogar />;
     case "ropa":
-      return <img src={Ropa} alt="" style={{width: "35px"}} />;
+      return <IconoRopa />;
     case "salud e higiene":
-      return <img src={SaludEHigiene} alt="" style={{width: "35px"}} />;
-    case "combustible":
-      return <img src={Combustible} alt="" style={{width: "35px"}} />;
+      return <IconoSaludEHigiene />;
+    case "transporte":
+      return <IconoTransporte />;
     default:
       break;
   }

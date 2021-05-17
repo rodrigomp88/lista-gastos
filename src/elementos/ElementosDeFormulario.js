@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import theme from "../theme";
+import { theme } from "./../theme";
 
 const ContenedorFiltros = styled.div`
   display: flex;
@@ -11,15 +11,14 @@ const ContenedorFiltros = styled.div`
     flex-direction: column;
 
     & > * {
-      width: 50%;
+      width: 100%;
       margin-bottom: 0.62rem; /* 10px */
     }
   }
 `;
 
 const Formulario = styled.form`
-  padding: 0 2.5rem; /* 40px */
-
+  padding: 0 2rem; /* 40px */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -28,7 +27,7 @@ const Formulario = styled.form`
     width: 100%;
     text-align: center;
     padding: 1rem 0;
-    font-family: "Itim", cursive;
+    font-family: "Work Sans", sans-serif;
     &::placeholder {
       color: rgba(0, 0, 0, 0.2);
     }
@@ -41,10 +40,10 @@ const Formulario = styled.form`
 `;
 
 const Input = styled.input`
-  font-size: 1.2rem; /* 40px */
+  font-size: 1.3rem; /* 40px */
   text-transform: uppercase;
   border: none;
-  border-bottom: 1.5px solid ${theme.grisClaro};
+  border-bottom: 1px solid ${theme.grisClaro};
   outline: none;
 
   @media (max-width: 60rem) {
@@ -54,7 +53,7 @@ const Input = styled.input`
 `;
 
 const InputGrande = styled(Input)`
-  font-size: 4.37rem; /* 70px */
+  font-size: 3rem; 
   font-weight: bold;
 `;
 
@@ -64,4 +63,4 @@ const ContenedorBoton = styled.div`
   margin: 2.5rem 0; /* 40px */
 `;
 
-export { ContenedorFiltros, Formulario, InputGrande, ContenedorBoton, Input };
+export { ContenedorFiltros, Formulario, Input, InputGrande, ContenedorBoton };

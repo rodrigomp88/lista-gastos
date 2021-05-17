@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Flecha from "../imagenes/flecha.png";
+import { ReactComponent as IconoFlecha } from "./../imagenes/flecha.svg";
 import { useHistory } from "react-router-dom";
 
 const Btn = styled.button`
@@ -11,7 +11,7 @@ const Btn = styled.button`
   text-align: center;
   margin-right: 1.25rem; /* 20px */
   border: none;
-  background: #f9f9f9;
+  background: #000;
   color: #fff;
   display: flex;
   align-items: center;
@@ -26,23 +26,18 @@ const Btn = styled.button`
     line-height: 2.5rem; /* 40px */
   }
 `;
-// const Icono = styled(IconoFlecha)`
-//   width: 50%;
-//   height: auto;
-//   fill: #fff;
-// `;
+
+const Icono = styled(IconoFlecha)`
+  width: 50%;
+  height: auto;
+  fill: #fff;
+`;
 
 export const BtnRegresar = ({ ruta = "/" }) => {
   const history = useHistory();
   return (
-    <>
-      <Btn onClick={() => history.push(ruta)}>
-        <img
-          src={Flecha}
-          alt=""
-          style={{ width: "70%", height: "auto", fill: "#fff" }}
-        />
-      </Btn>
-    </>
+    <Btn onClick={() => history.push(ruta)}>
+      <Icono />
+    </Btn>
   );
 };

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Header = styled.div`
   width: 100%;
@@ -15,6 +15,7 @@ const Header = styled.div`
 
 const Titulo = styled.h1`
   font-weight: normal;
+  text-align: center;
   text-transform: uppercase;
   font-size: 2rem; /* 40px */
 
@@ -37,7 +38,7 @@ const ContenedorHeader = styled.div`
 
     & > div {
       display: flex;
-      margin-bottom: 1rem; /* 20px */
+      margin-bottom: 1.25rem; /* 20px */
       justify-content: end;
     }
   }
