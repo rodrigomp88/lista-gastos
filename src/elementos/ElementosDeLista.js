@@ -176,7 +176,6 @@ const BotonCargarMas = styled.button`
   border-radius: 7px;
   font-family: "Work Sans", sans-serif;
   padding: 1rem 1.87rem; /* 20px 30px */
-
   font-size: 1.25rem; /* 20px */
   font-weight: 500;
   cursor: pointer;

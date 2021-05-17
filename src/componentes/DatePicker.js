@@ -68,6 +68,9 @@ export const DatePicker = ({ fecha, cambiarFecha }) => {
   return (
     <ContenedorInput>
       <DayPickerInput
+        //Con el inputProps lo que consegui es prohibir la escritura por parte del usuario 
+        //para que no genere el error de "NaN" en la base de datos y haga truncar la aplicación.
+        inputProps={{ readOnly: true }}
         value={fecha}
         onDayChange={(day) => cambiarFecha(day)}
         format="dd 'de' MMMM 'de' yyyy"
