@@ -28,28 +28,42 @@ const ContenedorAlerta = styled.div`
   z-index: 1000;
   width: 100%;
   left: 0;
-  top: 1.25rem; /* 20px */
+  top: 1rem; /* 20px */
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   animation: ${slideDown} 4s ease forwards;
 
-  p {
+  .alerta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: ${(props) => {
       if (props.tipo === "error") {
         return theme.rojo;
-      } else if (props.tipo === "exito") {
-        return theme.verde;
-      } else {
-        return "#000";
       }
+      if (props.tipo === "exito") {
+        return theme.verde;
+      }
+      if (props.tipo === "advertencia") {
+        return "orange";
+      } 
+        return "#000"
+      
     }};
     color: #fff;
     padding: 1.25rem 2.5rem; /* 20px 40px */
     border-radius: 0.31rem; /* 5px */
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    box-shadow: 0px 0.2rem 1.5rem rgba(0, 0, 0, 0.5);
+    p {
+      text-align: center;
+      font-size: 1.2rem;
+    }
+    i {
+      font-size: 1.7rem;
+      margin-right: 1rem;
+    }
   }
 `;
 
@@ -64,7 +78,7 @@ export const Alerta = ({
     if (estadoAlerta === true) {
       tiempo = setTimeout(() => {
         cambiarEstadoAlerta(false);
-      }, 4000);
+      }, 3000);
     }
 
     return () => clearTimeout(tiempo);
@@ -74,7 +88,18 @@ export const Alerta = ({
     <>
       {estadoAlerta && (
         <ContenedorAlerta tipo={tipo}>
-          <p>{mensaje}</p>
+          <div className="alerta">
+            {/* {tipo === "exito" ? (
+              <i className="fi-rr-thumbs-up"></i>
+            ) : tipo === "error" ? (
+              <i className="fi-rr-thumbs-down"></i>
+            ) : tipo === "advertencia" ? (
+              <i className="fi-rr-info"></i>
+            ) : (
+              <i className="fi-rr-info"></i>
+            )} */}
+            <p>{mensaje}</p>
+          </div>
         </ContenedorAlerta>
       )}
     </>

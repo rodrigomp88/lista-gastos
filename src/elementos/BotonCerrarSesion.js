@@ -21,6 +21,8 @@ export const BotonCerrarSesion = () => {
       as="button"
       className="btn btn-danger"
       onClick={cerrarSesion}
+      data-bs-toggle="tooltip"
+      title="Cerrar sesion"
     >
       <i className="fi-rr-sign-out"></i>
     </Boton>

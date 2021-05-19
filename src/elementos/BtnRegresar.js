@@ -40,7 +40,11 @@ const Icono = styled.i`
 export const BtnRegresar = ({ ruta = "/" }) => {
   const history = useHistory();
   return (
-    <Btn onClick={() => history.push(ruta)}>
+    <Btn
+      data-bs-toggle="tooltip"
+      title="Volver"
+      onClick={() => history.push(ruta)}
+    >
       <Icono className="fi-rr-undo"></Icono>
     </Btn>
   );

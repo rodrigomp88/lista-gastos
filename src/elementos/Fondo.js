@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as Puntos } from "./../imagenes/puntos.svg";
+import { ReactComponent as Puntos } from "./../images/puntos.svg";
 
 const Svg = styled.svg`
   width: 100%;

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useObtenerGastosDelMes } from "../hooks/useObtenerGastosDelMes";
+import { useObtenerGastosDelMes } from "../hooks/gastos/useObtenerGastosDelMes";
 
 const TotalGastadoContext = React.createContext();
 
-const useTotalDelMes = () => useContext(TotalGastadoContext);
+const useTotalGastoDelMes = () => useContext(TotalGastadoContext);
 
 const TotalGastadoProvider = ({ children }) => {
-  const [total, setTotal] = useState(0);
+  const [totalGastado, setTotal] = useState(0);
   const gastos = useObtenerGastosDelMes();
 
   useEffect(() => {
@@ -19,10 +19,10 @@ const TotalGastadoProvider = ({ children }) => {
   }, [gastos]);
 
   return (
-    <TotalGastadoContext.Provider value={{ total: total }}>
+    <TotalGastadoContext.Provider value={{ totalGastado: totalGastado }}>
       {children}
     </TotalGastadoContext.Provider>
   );
 };
 
-export { TotalGastadoProvider, useTotalDelMes };
+export { TotalGastadoProvider, useTotalGastoDelMes };
