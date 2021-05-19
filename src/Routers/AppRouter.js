@@ -23,6 +23,7 @@ import WebFont from "webfontloader";
 import { AdminIngresos } from "../components/ingresos/AdminIngresos";
 import { ListaDeIngresos } from "../components/ingresos/ListaDeIngresos";
 import { EditarIngreso } from "../components/ingresos/EditarIngreso";
+import { AdminPerfil } from "../components/AdminPerfil";
 
 WebFont.load({
   google: {
@@ -62,12 +63,15 @@ export const AppRouter = () => {
                   <AdminIngresos />
                 </RutaPrivada>
                 <RutaPrivada path="/ingresos-lista">
-                <ListaDeIngresos />
-              </RutaPrivada>
-              <RutaPrivada path="/ingresos-editar/:id">
-                <EditarIngreso />
-              </RutaPrivada>
+                  <ListaDeIngresos />
+                </RutaPrivada>
+                <RutaPrivada path="/ingresos-editar/:id">
+                  <EditarIngreso />
+                </RutaPrivada>
 
+                <RutaPrivada path="/perfil">
+                  <AdminPerfil />
+                </RutaPrivada>
                 <RutaPrivada path="/">
                   <AdminPanel />
                 </RutaPrivada>

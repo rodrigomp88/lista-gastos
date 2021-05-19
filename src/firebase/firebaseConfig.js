@@ -16,5 +16,6 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 const auth = firebase.auth();
+const passwordReset = email => auth.sendPasswordResetEmail(email);
 
-export { db, auth };
+export { db, auth, passwordReset };

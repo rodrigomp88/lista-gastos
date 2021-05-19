@@ -12,30 +12,42 @@ import { BarraTotalGastado } from "./BarraTotalGastado";
 import { Boton } from "../elementos/Botton";
 import { ContenedorBotonCentral } from "../elementos/ElementosDeLista";
 import logo from "../images/logo.png";
+import { useAuth } from "../context/AuthConext";
+// import { Link } from "react-router-dom";
 
 export const AdminPanel = () => {
+  const { usuario } = useAuth();
   return (
     <>
       <Contenedor>
         <Helmet>
-          <title>Administrar</title>
+          <title>Bienvenido: {usuario.email}</title>
         </Helmet>
         <Header>
           <ContenedorHeader>
             <img src={logo} alt="" style={{ width: "100px" }} />
-            <Titulo>Administra tus gastos e ingresos</Titulo>
+            <Titulo>ingresos y egresos</Titulo>
             <ContenedorBotones>
+              {/* <Boton
+                as={Link}
+                className="btn btn-warning"
+                data-bs-toggle="tooltip"
+                title="Pefil"
+                to="/perfil"
+              >
+                <i className="fi-rr-mode-portrait"></i>
+              </Boton> */}
+              <strong>{usuario.email}</strong>
               <BotonCerrarSesion />
             </ContenedorBotones>
           </ContenedorHeader>
         </Header>
-
         <ContenedorBotonCentral>
           <Boton to="/ingresos" className="btn btn-light">
-            Administrar ingreso
+            Ingreso
           </Boton>
           <Boton to="/gastos" className="btn btn-light">
-            Administrar gasto
+            Egreso
           </Boton>
         </ContenedorBotonCentral>
         <BarraTotalGastado />

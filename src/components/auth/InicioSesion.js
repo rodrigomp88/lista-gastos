@@ -82,6 +82,47 @@ export const InicioSesion = () => {
       cambiarAlerta({ tipo: "error", mensaje: mensaje });
     }
   };
+
+  const resetearPassword = async (e) => {
+    e.preventDefault();
+
+    if (correo === "") {
+      cambiarEstadoAlerta(true);
+      cambiarAlerta({
+        tipo: "error",
+        mensaje: "Por favor ingrese un correo registrado primero",
+      });
+
+      return;
+    }
+
+    try {
+      await auth.sendPasswordResetEmail(correo);
+      cambiarEstadoAlerta(true);
+      cambiarAlerta({
+        tipo: "exito",
+        mensaje: "Se le ha enviado un correo para restablecer su contraseña",
+      });
+    } catch (error) {
+      cambiarEstadoAlerta(true);
+
+      let mensaje;
+
+      switch (error.code) {
+        case "auth/invalid-email":
+          mensaje = "El formato del correo es invalido";
+          break;
+        case "auth/user-not-found":
+          mensaje =
+            "No se encontro ninguna cuenta con el correo electrónico proporcionado.";
+          break;
+        default:
+          mensaje = "Hubo un error al intentar crear la cuenta.";
+          break;
+      }
+      cambiarAlerta({ tipo: "error", mensaje: mensaje });
+    }
+  };
   return (
     <>
       <Helmet>
@@ -91,7 +132,7 @@ export const InicioSesion = () => {
       <ContenedorInicio>
         <Header>
           <ContenedorHeader>
-            <Titulo>Ingresar</Titulo>
+            <Titulo>Ingreso para usuarios registrados</Titulo>
           </ContenedorHeader>
         </Header>
 
@@ -113,9 +154,10 @@ export const InicioSesion = () => {
             value={password}
             onChange={handleChange}
           />
-
           <div className="text-center mt-3">
-            No tenes cuenta? <Link to="/registrar" className="text-success">registrate</Link>
+            <Link onClick={resetearPassword} to="#" className="text-success">
+              Olvido su contraseña
+            </Link>
           </div>
 
           <ContenedorBoton>
@@ -123,6 +165,13 @@ export const InicioSesion = () => {
               Iniciar Sesion
             </Boton>
           </ContenedorBoton>
+
+          <div className="text-center mt-3">
+            No tenes cuenta?{" "}
+            <Link to="/registrar" className="text-success">
+              Registrate
+            </Link>
+          </div>
         </Formulario>
       </ContenedorInicio>
 

@@ -72,11 +72,9 @@ export const SelectorCategorias = ({ categoria, cambiarCategoria }) => {
 
   const categorias = [
     { id: "comida", texto: "Comida" },
-    { id: "cuentas y pagos", texto: "Cuentas y pagos" },
-    { id: "hogar", texto: "Hogar" },
+    { id: "pagos", texto: "Pagos" },
     { id: "transporte", texto: "Transporte" },
-    { id: "ropa", texto: "Ropa" },
-    { id: "salud e higiene", texto: "Salud e Higiene" },
+    { id: "salud", texto: "Salud" },
     { id: "compras", texto: "Compras" },
     { id: "diversion", texto: "Diversion" },
   ];

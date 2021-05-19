@@ -6,8 +6,8 @@
   box-sizing: border-box;
 }
 ::selection {
-  color: rgb(0, 0, 0);
-  background: rgb(252, 252, 252);
+  color: #00cba9;
+  background: rgb(0, 0, 0);
 }
 ::-webkit-scrollbar {
   width: 10px;

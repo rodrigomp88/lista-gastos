@@ -33,7 +33,7 @@ export const BarraTotalGastado = () => {
         Ingresos: <strong className="text-success"> {convertirAMoneda(totalIngresado)} </strong>
       </p>
       <p>
-        Gastos: <strong className="text-danger"> {convertirAMoneda(totalGastado)} </strong>
+        Egresos: <strong className="text-danger"> {convertirAMoneda(totalGastado)} </strong>
       </p>
     </BarraTotal>
   );

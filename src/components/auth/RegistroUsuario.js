@@ -23,7 +23,8 @@ const Svg = styled(SvgLogin)`
 export const RegistroUsuario = () => {
   const history = useHistory();
   const [correo, establecerCorreo] = useState("");
-  const [nombre, establecerNombre] = useState("");
+  // const [nombre, establecerNombre] = useState("");
+  // const [apellido, establecerApellido] = useState("");
   const [password, establecerPassword] = useState("");
   const [password2, establecerPassword2] = useState("");
   const [estadoAlerta, cambiarEstadoAlerta] = useState(false);
@@ -34,9 +35,12 @@ export const RegistroUsuario = () => {
       case "email":
         establecerCorreo(e.target.value);
         break;
-      case "nombre":
-        establecerNombre(e.target.value);
-        break;
+      // case "nombre":
+      //   establecerNombre(e.target.value);
+      //   break;
+      // case "apellido":
+      //   establecerApellido(e.target.value);
+      //   break;
       case "password":
         establecerPassword(e.target.value);
         break;
@@ -64,7 +68,13 @@ export const RegistroUsuario = () => {
 
       return;
     }
-    if (nombre === "" || correo === "" || password === "" || password2 === "") {
+    if (
+      // nombre === "" ||
+      // apellido === "" ||
+      correo === "" ||
+      password === "" ||
+      password2 === ""
+    ) {
       cambiarEstadoAlerta(true);
       cambiarAlerta({
         tipo: "error",
@@ -85,7 +95,7 @@ export const RegistroUsuario = () => {
 
     try {
       await auth.createUserWithEmailAndPassword(correo, password);
-      history.push("/admin-panel");
+      history.push("/");
     } catch (error) {
       cambiarEstadoAlerta(true);
       let mensaje;
@@ -118,19 +128,26 @@ export const RegistroUsuario = () => {
       <ContenedorInicio>
         <Header>
           <ContenedorHeader>
-            <Titulo>Registrarse</Titulo>
+            <Titulo>Registrese con su correo electrónico</Titulo>
           </ContenedorHeader>
         </Header>
 
         <Formulario onSubmit={handleSubmit}>
           <Svg />
-          <Input
+          {/* <Input
             type="text"
             name="nombre"
             placeholder="Nombre"
             value={nombre}
             onChange={handleChange}
           />
+          <Input
+            type="text"
+            name="apellido"
+            placeholder="Apellido"
+            value={apellido}
+            onChange={handleChange}
+          /> */}
           <Input
             type="email"
             name="email"
@@ -152,17 +169,17 @@ export const RegistroUsuario = () => {
             value={password2}
             onChange={handleChange}
           />
+          <ContenedorBoton>
+            <Boton as="button" type="submit" className="btn btn-success">
+              Crear Cuenta
+            </Boton>
+          </ContenedorBoton>
           <div className="container text-center mt-3">
             Ya tenes cuenta?{" "}
             <Link to="/ingresar" className="text-success">
               Inicia sesión
             </Link>
           </div>
-          <ContenedorBoton>
-            <Boton as="button" type="submit" className="btn btn-success">
-              Crear Cuenta
-            </Boton>
-          </ContenedorBoton>
         </Formulario>
       </ContenedorInicio>
 

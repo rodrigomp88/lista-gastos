@@ -17,11 +17,9 @@ export const useObtenerGastosDelMesPorCategoria = () => {
       },
       {
         comida: 0,
-        "cuentas y pagos": 0,
-        hogar: 0,
+        pagos: 0,
         transporte: 0,
-        ropa: 0,
-        "salud e higiene": 0,
+        salud: 0,
         compras: 0,
         diversion: 0,
       }
