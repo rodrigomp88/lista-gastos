@@ -25,7 +25,7 @@ export const AdminIngresos = () => {
             <Titulo>Agregar Ingreso</Titulo>
             <ContenedorBotones>
               <Boton to="/ingresos-lista" className="btn btn-light">
-                Lista
+                ver todos
               </Boton>
             </ContenedorBotones>
           </ContenedorHeader>

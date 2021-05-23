@@ -20,7 +20,7 @@ import { editarGasto } from "../../firebase/gastos/editarGasto";
 export const FormularioGasto = ({ gasto }) => {
   const [inputDescripcion, cambiarInputDescripcion] = useState("");
   const [inputCantidad, cambiarInputCantidad] = useState("");
-  const [categoria, cambiarCategoria] = useState("hogar");
+  const [categoria, cambiarCategoria] = useState("compras");
   const [fecha, cambiarFecha] = useState(new Date());
   const [estadoAlerta, cambiarEstadoAlerta] = useState(false);
   const [alerta, cambiarAlerta] = useState({});
@@ -79,7 +79,7 @@ export const FormularioGasto = ({ gasto }) => {
             uidUsuario: usuario.uid,
           })
             .then(() => {
-              cambiarCategoria("hogar");
+              cambiarCategoria("comida");
               cambiarInputDescripcion("");
               cambiarInputCantidad("");
               cambiarFecha(new Date());
@@ -132,7 +132,7 @@ export const FormularioGasto = ({ gasto }) => {
           autoComplete="off"
         />
         <InputGrande
-          type="text"
+          type="number"
           name="cantidad"
           id="cantidad"
           placeholder="$0,00"

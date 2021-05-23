@@ -25,10 +25,10 @@ export const AdminGastos = () => {
             <Titulo>Agregar Gasto</Titulo>
             <ContenedorBotones>
               <Boton to="/gastos-categorias" className="btn btn-light">
-                Categorias
+                categorias x mes
               </Boton>
               <Boton to="/gastos-lista" className="btn btn-light">
-                Gastos
+                ver todos
               </Boton>
             </ContenedorBotones>
           </ContenedorHeader>

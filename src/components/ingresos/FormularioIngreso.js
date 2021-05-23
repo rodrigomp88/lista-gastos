@@ -121,7 +121,7 @@ export const FormularioIngreso = ({ ingreso }) => {
           autoComplete="off"
         />
         <InputGrande
-          type="text"
+          type="number"
           name="cantidad"
           id="cantidad"
           placeholder="$0,00"
